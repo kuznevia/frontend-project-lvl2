@@ -2,7 +2,6 @@ import { readFileSync } from 'fs';
 import * as path from 'path';
 import _ from 'lodash';
 
-
 export default (file1, file2) => {
   const file1Path = path.resolve(process.cwd(file1), file1);
   const file2Path = path.resolve(process.cwd(file2), file2);
@@ -26,7 +25,6 @@ export default (file1, file2) => {
     acc.push(['-', key, value]);
     return acc;
   }, []);
-    
   const jointEntriesPart2 = secondFileParsedEntries.reduce((acc, entry) => {
     const [key, value] = entry;
     if (!_.has(firstFileParsed, key)) {
@@ -34,20 +32,15 @@ export default (file1, file2) => {
       return acc;
     }
     return acc;
-  }, [])
-  
+  }, []);
   const jointEntries = [...jointEntriesPart1, ...jointEntriesPart2];
   const sortedJointEntries = _.sortBy(jointEntries, [1]);
   const EntriesStingify = sortedJointEntries.reduce((acc, entry) => {
     const [sign, key, value] = entry;
     const newString = `\n  ${sign} ${key}: ${value}`;
     return acc + newString;
-  }, '')
+  }, '');
   const result = `{${EntriesStingify}\n}`;
   console.log(result);
   return result;
-
-}
-
-
-
+};
