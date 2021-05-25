@@ -23,4 +23,4 @@ jobs:
 
       # Runs the Linter action
       - name: Run tests
-        run: npx jest
+        run: make test
