@@ -12,21 +12,10 @@ export default (file1, file2) => {
   const secondFileParsed = JSON.parse(secondFile);
   const firstFileParsedEntries = Object.entries(firstFileParsed);
   const secondFileParsedEntries = Object.entries(secondFileParsed);
-  const jointEntries = [...firstFileParsedEntries, ...secondFileParsedEntries];
-  console.log(firstFileParsedEntries);
-  console.log(secondFileParsedEntries);
-  const newEntries = firstFileParsedEntries.reduce((acc, entry) => {
+  const jointEntriesPart1 = firstFileParsedEntries.reduce((acc, entry) => {
     const [key, value] = entry;
-    console.log('fuction!');
-    console.log([key, value]);
-    console.log(entry);
-    console.log(_.has(firstFileParsed, key));
-    console.log(_.has(secondFileParsed, key));
-    console.log(firstFileParsed[key]);
-    console.log(secondFileParsed[key]);
-    console.log(firstFileParsed[key] === secondFileParsed[key]);
     if (_.has(secondFileParsed, key) && firstFileParsed[key] === secondFileParsed[key]) {
-      acc.push(['', key, value]);
+      acc.push([' ', key, value]);
       return acc;
     }
     if (_.has(secondFileParsed, key)) {
@@ -37,20 +26,28 @@ export default (file1, file2) => {
     acc.push(['-', key, value]);
     return acc;
   }, []);
-  console.log(newEntries)
-  
-  const additionalEntries = secondFileParsedEntries.reduce((acc, entry) => {
+    
+  const jointEntriesPart2 = secondFileParsedEntries.reduce((acc, entry) => {
     const [key, value] = entry;
-    console.log('newfunction!');
-    console.log([key, value]);
-    console.log(entry);
-    console.log(firstFileParsed[key]);
-    console.log(secondFileParsed[key]);
     if (!_.has(firstFileParsed, key)) {
       acc.push(['+', key, value]);
       return acc;
     }
     return acc;
-  }, newEntries)
-  console.log(additionalEntries);
+  }, [])
+  
+  const jointEntries = [...jointEntriesPart1, ...jointEntriesPart2];
+  const sortedJointEntries = _.sortBy(jointEntries, [1]);
+  const EntriesStingify = sortedJointEntries.reduce((acc, entry) => {
+    const [sign, key, value] = entry;
+    const newString = `\n  ${sign} ${key}: ${value}`;
+    return acc + newString;
+  }, '')
+  const result = `{${EntriesStingify}\n}`;
+  console.log(result);
+  return result;
+
 }
+
+
+
