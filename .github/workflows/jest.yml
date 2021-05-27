@@ -20,7 +20,20 @@ jobs:
       # installing dependencies
       - name: Install Dependencies
         run: make install
+        # Add environment variables
+        env:
+          CI: true
 
       # Runs the Linter action
       - name: Run tests
         run: make test
+
+      # Publish code coverage on Code Climate
+      # https://github.com/paambaati/codeclimate-action
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: 92d51310c8007652a2d6140cea34157e658f3ec7a10c70551a8afdd50cf75261
+        with:
+          coverageCommand: npm run coverage
+          debug: true
