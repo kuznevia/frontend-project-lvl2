@@ -12,3 +12,6 @@ lintfix:#fixing linter
 
 test:#initilizing tests
 	NODE_OPTIONS=--experimental-vm-modules npx jest
+
+test-coverage:#initilizing test-coverage
+	NODE_OPTIONS=--experimental-vm-modules npx jest -- --coverage --coverageProvider=v8
