@@ -7,4 +7,4 @@
 
 ### Демонстрация работы 
 
-https://asciinema.org/a/0fHbbuPxIsWBca3mgD4RlsXri
+https://asciinema.org/a/JxYhEmRR5IpxuzF84QnJJjJtk
