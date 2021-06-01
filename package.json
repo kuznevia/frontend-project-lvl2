@@ -2,13 +2,13 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/kuznevia/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/kuznevia/frontend-project-lvl2/actions)",
-  "main": "gendiff.js",
+  "main": "src/index.js",
   "type": "module",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --bail"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --bail --watch"
   },
   "repository": {
     "type": "git",
