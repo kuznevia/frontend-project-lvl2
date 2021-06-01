@@ -1,4 +1,4 @@
-import genDiff from '../src/rungendiff.js';
+import genDiff from '../src/index.js';
 
 test('genDiff JSON', () => {
   const answer = '{\n  - follow: false\n    host: hexlet.io\n  - proxy: 123.234.53.22\n  - timeout: 50\n  + timeout: 20\n  + verbose: true\n}';

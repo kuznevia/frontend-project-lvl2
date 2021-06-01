@@ -1,14 +1,9 @@
-import { readFileSync } from 'fs';
-import * as path from 'path';
 import _ from 'lodash';
+import parse from './parsers.js';
 
 export default (file1, file2) => {
-  const file1Path = path.resolve(process.cwd(file1), file1);
-  const file2Path = path.resolve(process.cwd(file2), file2);
-  const firstFile = readFileSync(file1Path, 'utf8');
-  const firstFileParsed = JSON.parse(firstFile);
-  const secondFile = readFileSync(file2Path, 'utf8');
-  const secondFileParsed = JSON.parse(secondFile);
+  const firstFileParsed = parse(file1);
+  const secondFileParsed = parse(file2);
   const firstFileParsedEntries = Object.entries(firstFileParsed);
   const secondFileParsedEntries = Object.entries(secondFileParsed);
   const jointEntriesPart1 = firstFileParsedEntries.reduce((acc, entry) => {
