@@ -36,6 +36,5 @@ export default (file1, file2) => {
     return acc + newString;
   }, '');
   const result = `{${EntriesStingify}\n}`;
-  console.log(result);
   return result;
 };
