@@ -26,7 +26,7 @@ jobs:
 
       # Runs the Linter action
       - name: Run tests
-        run: make test
+        run: make test-github-actions
 
       # Publish code coverage on Code Climate
       # https://github.com/paambaati/codeclimate-action

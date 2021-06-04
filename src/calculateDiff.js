@@ -1,12 +1,7 @@
 import _ from 'lodash';
 
 const calculateDiff = (data1, data2) => {
-  console.log(data1);
-  console.log(data2);
-  console.log(_.keys(data1));
-  console.log(_.keys(data2));
   const commonKeys = _.union(_.keys(data1), _.keys(data2));
-  console.log(commonKeys);
   const result = commonKeys
     .map((node) => {
       if (!_.has(data1, node)) {
@@ -29,11 +24,7 @@ const calculateDiff = (data1, data2) => {
       }
       return { name: node, type: 'unchanged', value: data1[node] };
     });
-  console.log('ПУК');
-  console.log(result);
-  console.log('ЖУК');
-  console.log(result[0].children);
-  return result;
+  return _.sortBy(result, 'name');
 };
 
 export default calculateDiff;

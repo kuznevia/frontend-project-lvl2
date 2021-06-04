@@ -13,5 +13,8 @@ lintfix:#fixing linter
 test:#initilizing tests
 	npm test
 
+test-github-actions:#initilizing tests on GitHub Actions
+	NODE_OPTIONS=--experimental-vm-modules npx jest --bail
+	
 test-coverage:#initilizing test-coverage
 	npm test -- --coverage --coverageProvider=v8
