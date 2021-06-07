@@ -12,7 +12,7 @@ const stringify = (value, spaces = 0) => {
   return `{\n${innerValue}\n${ident(spaces)}}`;
 };
 
-const format = (diff, spaces = 0) => {
+const stylish = (diff, spaces = 0) => {
   const lines = diff.map((node) => {
     const buildLine = (char, value) => `${ident(spaces)}  ${char} ${node.name}: ${stringify(value, spaces + 1)}`;
     switch (node.type) {
@@ -25,7 +25,7 @@ const format = (diff, spaces = 0) => {
       case 'added':
         return buildLine('+', node.value);
       case 'nested':
-        return `${ident(spaces)}    ${node.name}: ${format(node.children, spaces + 1)}`;
+        return `${ident(spaces)}    ${node.name}: ${stylish(node.children, spaces + 1)}`;
       default:
         throw new Error(errors.code.ESRCH);
     }
@@ -34,4 +34,4 @@ const format = (diff, spaces = 0) => {
   return `{\n${innerValue}\n${ident(spaces)}}`;
 };
 
-export default format;
+export default stylish;
