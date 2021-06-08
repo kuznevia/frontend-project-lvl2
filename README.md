@@ -12,11 +12,13 @@
 1. Установите Node.js последней версии в систему глобально (Установка JavaScript).
 2. Склонируйте созданный репозиторий проекта локально. 
 3. Выполнить установку зависимостей (make install)
-4. Запустить игры (команды в описании игр)
+4. Запустить сравнение файлов (команды в описании)
 
-### Использование
+### Описание
 
-gendiff [options] <pathToFile1> <pathToFile2>
+Вычислить различия можно с помощью команды
+
+gendiff [options] pathToFile1 pathToFile2
 
 Options:
 -V, --version output the version number
@@ -24,7 +26,7 @@ Options:
 -h, --help output usage information
 
 [type] - plain, json, nested
-<pathToFile> - path to json, yaml or ini configuration file
+<pathToFile> - путь к json или yaml файлам
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/kuznevia/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/kuznevia/frontend-project-lvl2/actions)
@@ -38,3 +40,4 @@ Options:
 https://asciinema.org/a/JxYhEmRR5IpxuzF84QnJJjJtk - flat json/yml
 https://asciinema.org/a/6ujXPV6nAvU09vjLF3zj4vcgX - nested json/yml
 https://asciinema.org/a/c3GJd0azHzWUBw6Ju57xYfqcm - plain json/yml
+https://asciinema.org/a/bvI0TJWbLXceG45PAJkQPTtaZ - json json/yml
