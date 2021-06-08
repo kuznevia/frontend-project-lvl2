@@ -7,6 +7,6 @@ const formats = {
 };
 
 export default (diff, format) => {
-  const formatType = formats[format];
-  return formatType(diff);
+  const getFormatType = formats[format];
+  return getFormatType(diff);
 };

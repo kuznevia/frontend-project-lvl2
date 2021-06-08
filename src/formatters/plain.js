@@ -18,7 +18,7 @@ const getNodeName = (node, ancestor) => {
   return `${ancestor}.${node.name}`;
 };
 
-const plain = (diff, ancestor = '') => {
+const formatPlain = (diff, ancestor = '') => {
   const lines = diff
     .filter((node) => node.type !== 'unchanged')
     .map((node) => {
@@ -30,7 +30,7 @@ const plain = (diff, ancestor = '') => {
         case 'added':
           return `Property '${getNodeName(node, ancestor)}' was added with value: ${getValue(node.value)}`;
         case 'nested':
-          return plain(node.children, getNodeName(node, ancestor));
+          return formatPlain(node.children, getNodeName(node, ancestor));
         default:
           throw new Error(errors.code.ESRCH);
       }
@@ -39,4 +39,4 @@ const plain = (diff, ancestor = '') => {
   return innerValue;
 };
 
-export default plain;
+export default formatPlain;
