@@ -11,6 +11,5 @@ export default (file1, file2, format = 'stylish') => {
   const firstFileParsed = parse(data1, ext1);
   const secondFileParsed = parse(data2, ext2);
   const diff = calculateDiff(firstFileParsed, secondFileParsed);
-  console.log(JSON.stringify(diff));
   return visualize(diff, format);
 };
