@@ -37,3 +37,4 @@ Options:
 
 https://asciinema.org/a/JxYhEmRR5IpxuzF84QnJJjJtk - flat json/yml
 https://asciinema.org/a/6ujXPV6nAvU09vjLF3zj4vcgX - nested json/yml
+https://asciinema.org/a/c3GJd0azHzWUBw6Ju57xYfqcm - plain json/yml

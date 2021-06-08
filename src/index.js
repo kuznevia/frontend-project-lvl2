@@ -1,7 +1,7 @@
 import calculateDiff from './calculateDiff.js';
 import { readFile, getExt } from './utils.js';
 import parse from './parsers.js';
-import visualize from './formatters/formatter.js';
+import visualize from './formatters/index.js';
 
 export default (file1, file2, format = 'stylish') => {
   const data1 = readFile(file1);

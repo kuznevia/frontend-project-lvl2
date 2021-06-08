@@ -8,27 +8,27 @@ const secondAnswerPath = path.resolve(process.cwd(), './__tests__/__fixtures__/c
 const secondAnswer = readFileSync(secondAnswerPath, 'utf8');
 
 test('genDiff JSON plain', () => {
-  expect(genDiff('file1.json', 'file2.json')).toEqual(firstAnswer);
+  expect(genDiff('file3.json', 'file4.json', 'plain')).toEqual(firstAnswer);
 });
 
 test('genDiff YML plain', () => {
-  expect(genDiff('file1.yml', 'file2.yml')).toEqual(firstAnswer);
+  expect(genDiff('file3.yml', 'file4.yml', 'plain')).toEqual(firstAnswer);
 });
 
 test('genDiff JSON/YML plain', () => {
-  expect(genDiff('file1.json', 'file2.yml')).toEqual(firstAnswer);
-  expect(genDiff('file1.yml', 'file2.json')).toEqual(firstAnswer);
+  expect(genDiff('file3.json', 'file4.yml', 'plain')).toEqual(firstAnswer);
+  expect(genDiff('file3.yml', 'file4.json', 'plain')).toEqual(firstAnswer);
 });
 
 test('genDiff JSON nested', () => {
-  expect(genDiff('file3.json', 'file4.json')).toEqual(secondAnswer);
+  expect(genDiff('file3.json', 'file4.json', 'stylish')).toEqual(secondAnswer);
 });
 
 test('genDiff YML nested', () => {
-  expect(genDiff('file3.yml', 'file4.yml')).toEqual(secondAnswer);
+  expect(genDiff('file3.yml', 'file4.yml', 'stylish')).toEqual(secondAnswer);
 });
 
 test('genDiff JSON/YML nested', () => {
-  expect(genDiff('file3.json', 'file4.yml')).toEqual(secondAnswer);
-  expect(genDiff('file3.yml', 'file4.json')).toEqual(secondAnswer);
+  expect(genDiff('file3.json', 'file4.yml', 'stylish')).toEqual(secondAnswer);
+  expect(genDiff('file3.yml', 'file4.json', 'stylish')).toEqual(secondAnswer);
 });
