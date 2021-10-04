@@ -1,4 +1,3 @@
-import errors from 'errno';
 import _ from 'lodash';
 
 const getValue = (value) => {
@@ -19,21 +18,20 @@ const getNodeName = (node, ancestor) => {
 };
 
 const formatPlain = (diff, ancestor = '') => {
+  console.log(diff);
+  console.log('HELLO WORLD!!!!!!!!!!!');
   const lines = diff
     .filter((node) => node.type !== 'unchanged')
     .map((node) => {
-      switch (node.type) {
-        case 'removed':
-          return `Property '${getNodeName(node, ancestor)}' was removed`;
-        case 'changed':
-          return `Property '${getNodeName(node, ancestor)}' was updated. From ${getValue(node.valueBefore)} to ${getValue(node.valueAfter)}`;
-        case 'added':
-          return `Property '${getNodeName(node, ancestor)}' was added with value: ${getValue(node.value)}`;
-        case 'nested':
-          return formatPlain(node.children, getNodeName(node, ancestor));
-        default:
-          throw new Error(errors.code.ESRCH);
-      }
+      console.log(node);
+      console.log(node.type);
+      const diffType = {
+        removed: () => `Property '${getNodeName(node, ancestor)}' was removed`,
+        changed: () => `Property '${getNodeName(node, ancestor)}' was updated. From ${getValue(node.firstValue)} to ${getValue(node.secondValue)}`,
+        added: () => `Property '${getNodeName(node, ancestor)}' was added with value: ${getValue(node.value)}`,
+        nested: () => formatPlain(node.children, getNodeName(node, ancestor)),
+      };
+      return diffType[node.type]();
     });
   const innerValue = lines.join('\n');
   return innerValue;

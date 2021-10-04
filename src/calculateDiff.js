@@ -18,8 +18,8 @@ const calculateDiff = (data1, data2) => {
         return {
           name: node,
           type: 'changed',
-          valueBefore: data1[node],
-          valueAfter: data2[node],
+          firstValue: data1[node],
+          secondValue: data2[node],
         };
       }
       return { name: node, type: 'unchanged', value: data1[node] };
