@@ -18,13 +18,9 @@ const getNodeName = (node, ancestor) => {
 };
 
 const formatPlain = (diff, ancestor = '') => {
-  console.log(diff);
-  console.log('HELLO WORLD!!!!!!!!!!!');
   const lines = diff
     .filter((node) => node.type !== 'unchanged')
     .map((node) => {
-      console.log(node);
-      console.log(node.type);
       const diffType = {
         removed: () => `Property '${getNodeName(node, ancestor)}' was removed`,
         changed: () => `Property '${getNodeName(node, ancestor)}' was updated. From ${getValue(node.firstValue)} to ${getValue(node.secondValue)}`,
