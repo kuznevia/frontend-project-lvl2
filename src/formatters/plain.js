@@ -20,16 +20,17 @@ const getNodeName = (node, ancestor) => {
 const formatPlain = (diff) => {
   const iter = (newDiff, ancestor = '') => {
     const lines = newDiff
-      .filter((node) => node.type !== 'unchanged')
       .map((node) => {
         const diffType = {
+          unchanged: () => '',
           removed: () => `Property '${getNodeName(node, ancestor)}' was removed`,
           changed: () => `Property '${getNodeName(node, ancestor)}' was updated. From ${getValue(node.firstValue)} to ${getValue(node.secondValue)}`,
           added: () => `Property '${getNodeName(node, ancestor)}' was added with value: ${getValue(node.value)}`,
           nested: () => iter(node.children, getNodeName(node, ancestor)),
         };
         return diffType[node.type]();
-      });
+      })
+      .filter((node) => node !== '');
     const innerValue = lines.join('\n');
     return innerValue;
   };

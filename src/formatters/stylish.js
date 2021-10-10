@@ -1,31 +1,30 @@
 import _ from 'lodash';
 
-const getIdent = (spaces) => (' '.repeat(spaces));
+const getIdent = (spaces) => ('  '.repeat(spaces));
 
 const getString = (value, spaces = 0) => {
   if (!_.isObject(value)) {
     return value;
   }
-  const lines = _.keys(value).map((node) => `${getIdent(spaces + 5)}  ${node}: ${getString(value[node], spaces + 4)}`);
+  const lines = _.keys(value).map((node) => `${getIdent(spaces + 2)}  ${node}: ${getString(value[node], spaces + 2)}`);
   const innerValue = lines.join('\n');
-  return `{\n${innerValue}\n${getIdent(spaces + 1)}  }`;
+  return `{\n${innerValue}\n${getIdent(spaces + 1)}}`;
 };
 
 const formatStylish = (diff) => {
-  const iter = (newDiff, spaces = 0) => {
+  const iter = (newDiff, spaces = 1) => {
     const lines = newDiff.map((node) => {
-      const buildLine = (char, value) => `${getIdent(spaces)}  ${char} ${node.name}: ${getString(value, spaces + 1)}`;
       const diffType = {
-        removed: () => buildLine('-', node.value),
-        unchanged: () => buildLine(' ', node.value),
-        changed: () => `${getIdent(spaces + 2)}- ${node.name}: ${getString(node.firstValue, spaces + 1)}\n ${getIdent(spaces + 1)}+ ${node.name}: ${getString(node.secondValue, spaces + 1)}`,
-        added: () => buildLine('+', node.value),
-        nested: () => `${getIdent(spaces + 2)}  ${node.name}: ${iter(node.children, spaces + 4)}`,
+        removed: () => `${getIdent(spaces)}- ${node.name}: ${getString(node.value, spaces)}`,
+        unchanged: () => `${getIdent(spaces)}  ${node.name}: ${getString(node.value, spaces)}`,
+        changed: () => `${getIdent(spaces)}- ${node.name}: ${getString(node.firstValue, spaces)}\n${getIdent(spaces)}+ ${node.name}: ${getString(node.secondValue, spaces)}`,
+        added: () => `${getIdent(spaces)}+ ${node.name}: ${getString(node.value, spaces)}`,
+        nested: () => `${getIdent(spaces)}  ${node.name}: ${iter(node.children, spaces + 2)}`,
       };
       return diffType[node.type]();
     });
     const innerValue = lines.join('\n');
-    return `{\n${innerValue}\n${getIdent(spaces)}}`;
+    return `{\n${innerValue}\n${getIdent(spaces - 1)}}`;
   };
   return iter(diff);
 };
